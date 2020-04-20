@@ -31,12 +31,35 @@ public class StringConverter
 
     public static String pigLatinate(String str)
     {
-        return str;
+        if (firstVowel(str) > 0)
+        {
+            if (isVowel(str.charAt(0)))
+            {
+                return str + "yay";
+            }
+            else
+            {
+
+            }
+        }
+        return str + "ay";
     }
 
     static boolean isVowel(char c)
     {
         return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+
+    static int firstVowel(String str)
+    {
+        for (int i = 0; i < str.length(); i++)
+        {
+            if (isVowel(str.charAt(i)))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static String shorthand(String str)
