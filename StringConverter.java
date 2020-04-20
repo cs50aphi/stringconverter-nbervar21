@@ -1,13 +1,5 @@
 public class StringConverter
 {
-    public static void main(String[] args)
-    {
-        System.out.println(reverse("hey whats up"));
-        System.out.println(reverse("peter"));
-        System.out.println(checkPalindrome("peter"));
-        System.out.println(checkPalindrome("a,Bba:"));
-    }
-
     static String cleanString(String str)
     {
         String cleaned = "";
@@ -19,7 +11,7 @@ public class StringConverter
                 cleaned = cleaned + chr;
             }
         }
-        return cleaned;
+        return cleaned.toLowerCase();
     }
 
     public static String reverse(String str)
@@ -40,6 +32,36 @@ public class StringConverter
     public static String pigLatinate(String str)
     {
         return str;
+    }
+
+    static boolean isVowel(char c)
+    {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+
+    public static String shorthand(String str)
+    {
+        str = str.toLowerCase();
+        str = str.replace("and", "&");
+        str = str.replace("for", "4");
+        str = str.replace("to", "2");
+        int len = str.length();
+        String noVowels = "";
+        for (int i = 0; i < len; i++)
+        {
+            char chr = str.charAt(i);
+            // if we're the 'y' at the start of a 'you'
+            if (chr == 'y' && i + 2 <= len && str.substring(i, i + 3).equals("you"))
+            {
+                // add a 'u' that won't get removed
+                noVowels += 'u';
+            }
+            else if (!isVowel(chr))
+            {
+                noVowels += chr;
+            }
+        }
+        return noVowels;
     }
 
     public static boolean checkPalindrome(String str)
