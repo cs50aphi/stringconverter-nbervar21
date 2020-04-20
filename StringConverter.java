@@ -31,7 +31,8 @@ public class StringConverter
 
     public static String pigLatinate(String str)
     {
-        if (firstVowel(str) > 0)
+        int first = firstVowel(str);
+        if (first > 0)
         {
             if (isVowel(str.charAt(0)))
             {
@@ -39,7 +40,15 @@ public class StringConverter
             }
             else
             {
-
+                String start = str.substring(0, first);
+                String end = str.substring(first, str.length());
+                char firstChar = start.charAt(0);
+                if (Character.isUpperCase(firstChar))
+                {
+                    start = Character.toLowerCase(firstChar) + start.substring(1, start.length());
+                    end = Character.toUpperCase(end.charAt(0)) + end.substring(1, end.length());
+                }
+                return end + start + "ay";
             }
         }
         return str + "ay";
